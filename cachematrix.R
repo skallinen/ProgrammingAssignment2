@@ -12,7 +12,7 @@ makeCacheMatrix <- function(x = matrix()) {
         set <- function(y) {
                 ## setting value to x in the parent environment
                 x <<- y
-                ## clearing inverse chache as we now have a new matrix
+                ## clearing inverse cache as we now have a new matrix
                 cache <<- NULL 
         }
         ## get function returns the matrix stored
@@ -34,9 +34,9 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## begin by getting inverse from makeCacheMatrix function
         cache <- x$getinverse()
-        ## checking if chache exists
+        ## checking if cache exists
         if(!is.null(cache)) {
-                ## chache exists...
+                ## cache exists...
                 message("getting cached data")
                 ## ...so return cache and exit function
                 return(cache)
