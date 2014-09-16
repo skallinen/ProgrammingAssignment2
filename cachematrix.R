@@ -1,8 +1,10 @@
-## Put comments here that give an overall description of what your
-## functions do
+## An assignment at Data Science MOOC on coursera. R-Course assignment 2
+## makeCacheMatrix function creates, returns and updates a matrix 
+## Furthermore the function stores and returns the inverse matrix.
+## cacheSolve calculates the inverse to the matrix after checking that it
+## does not already exist in the cache
 
-## Write a short comment describing this function
-
+## The principal function for handlign the matrix
 makeCacheMatrix <- function(x = matrix()) {
         ## clearing inverse cache as it might have been previously used
         cache <- NULL
@@ -27,8 +29,8 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## The fuction that handles the calculations for inverse functions or returns 
+## the inverse from cache.
 cacheSolve <- function(x, ...) {
         ## begin by getting inverse from makeCacheMatrix function
         cache <- x$getinverse()
