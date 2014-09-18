@@ -1,6 +1,7 @@
 ## An assignment at Data Science MOOC on coursera. R-Course assignment 2
 ## functions for handling matrixes, calculate inverse and caching.
-
+## -----
+## Commenting each line mostly to make sense and remember it better.
 
 ## The principal function for handling the matrix: creates, returns and
 ## updates a matrix and its cache values
@@ -30,8 +31,9 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## The function that handles the calculations of inverse matrix or returns 
-## the inverse from cache
+## the inverse from cache.
 cacheSolve <- function(x, ...) {
+        ## x is the list that makeCacheMatrix function produces
         ## begin by getting inverse from makeCacheMatrix function
         cache <- x$getcache()
         ## checking if cache exists
