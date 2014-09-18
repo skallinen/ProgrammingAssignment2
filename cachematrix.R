@@ -1,52 +1,51 @@
 ## An assignment at Data Science MOOC on coursera. R-Course assignment 2
-## makeCacheMatrix function creates, returns and updates a matrix 
-## Furthermore the function stores and returns the inverse matrix.
-## cacheSolve calculates the inverse to the matrix after checking that it
-## does not already exist in the cache
+## functions for handling matrixes, calculate inverse and caching.
 
-## The principal function for handlign the matrix
+
+## The principal function for handling the matrix: creates, returns and
+## updates a matrix and its cache values
 makeCacheMatrix <- function(x = matrix()) {
-        ## clearing inverse cache as it might have been previously used
+        ## clearing cache as it might have been previously used
+        ## by another "matrix"
         cache <- NULL
         ## set function
         set <- function(y) {
                 ## setting value to x in the parent environment
                 x <<- y
-                ## clearing inverse cache as we now have a new matrix
+                ## clearing cache as we now have a new matrix
                 cache <<- NULL 
         }
-        ## get function returns the matrix stored
+        ## get function returns the matrix stored, note that as x is not
+        ## initialized in current environment, it will look in the parent
         get <- function() x
-        ## setinverse function sets cache variable in parent environment
-        setinverse <- function(inverse) cache <<- inverse
-        ## getinverse function sets cache variable in parent environment        
-        getinverse <- function() cache
+        ## setcache function sets cache in parent environment
+        setcache <- function(inverse) cache <<- inverse
+        ## getcache function sets cache in parent environment        
+        getcache <- function() cache
         ## return a list with all functions
         list(set = set, get = get,
-             setinverse = setinverse,
-             getinverse = getinverse)
-
+             setcache = setcache,
+             getcache = getcache)
 }
 
 
-## The fuction that handles the calculations for inverse functions or returns 
-## the inverse from cache.
+## The function that handles the calculations of inverse matrix or returns 
+## the inverse from cache
 cacheSolve <- function(x, ...) {
         ## begin by getting inverse from makeCacheMatrix function
-        cache <- x$getinverse()
+        cache <- x$getcache()
         ## checking if cache exists
         if(!is.null(cache)) {
                 ## cache exists...
                 message("getting cached data")
-                ## ...so return cache and exit function
-                return(cache)
-        }
+        } else {
         ## we've reached here which means cache was empty so we get the matrix
         matrix <- x$get()
         ## doing the solve calculation and assign it to cache
         cache <- solve(matrix, ...)
-        ## set the inverse cache in makeCacheMatrix environment
-        x$setinverse(cache)
+        ## set the inverse cache in makeCacheMatrix function
+        x$setcache(cache)
+        }
         ## return the cache
         cache
 }
